@@ -1,5 +1,5 @@
 import pyads
-from pyads.testserver import AdvancedHandler, PLCVariable, AdsTestServer 
+from pyads.testserver import AdvancedHandler, PLCVariable, AdsTestServer, AmsHeader
 from pyads import constants
 import threading
 import time
@@ -13,8 +13,8 @@ def start_server():
     handler.add_variable(test_var)
 
     # Start the server
-    server = AdsTestServer(handler)
-    server.start()
+    server = AdsTestServer(handler, port=48898, ip_address="127.0.0.1", logging=True)
+    server.run()
     print("Test server started with AdvancedHandler on 127.0.0.1:48898")
 
     try:
